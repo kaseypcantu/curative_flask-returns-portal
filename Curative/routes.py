@@ -40,20 +40,19 @@ def index():
 @app.route("/curative_returns", methods=["GET", "POST"])
 def curative_returns():
     form = ShippingAddressForm()
-    print(form.address_line_1.data)
 
     if form.is_submitted():
         if form.return_destination.data == "DC Lab":
             curative_ship_to = ShipToAddress(
                     name="Curative DC Lab",
                     phone="1-789-456-1234",
-                    company_name="ShipEngine",
-                    address_line1="4009 Marathon Blvd",
-                    address_line2="Suite 100",
+                    company_name="Curative",
+                    address_line1="3330 New York Ave NE",
+                    address_line2=None,
                     address_line3=None,
-                    city_locality="Austin",
-                    state_province="TX",
-                    postal_code="78756",
+                    city_locality="Washington",
+                    state_province="DC",
+                    postal_code="20002",
                     country_code="US",
                     address_residential_indicator="no",
             )

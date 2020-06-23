@@ -94,23 +94,16 @@ class PackageInsuredValue:
 
 @dataclass
 class PackageLabelMessages:
-    reference1: str
-    reference2: str
-    reference3: str
+    reference1: Optional[str]
 
 
 @dataclass
 class Package:
     weight: PackageWeight
     dimensions: Optional[PackageDimensions]
+    label_messages: PackageLabelMessages
 
 
-@dataclass
-class AdvancedOptions:
-    custom_field1: Optional[str]
-
-
-# TODO: finish making the shipment class
 @dataclass
 class Shipment:
     carrier_id: str
@@ -122,8 +115,7 @@ class Shipment:
     warehouse_id: Optional[str]
     return_to: Optional[ReturnAddress]
     confirmation: str
-    advanced_options: Optional[AdvancedOptions]
-    insurance_provider: str  
+    insurance_provider: str
     packages: List[Package]
 
     def __post_init__(self):

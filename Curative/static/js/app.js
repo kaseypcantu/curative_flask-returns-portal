@@ -1,0 +1,11 @@
+console.log('Curative! - app.js loaded')
+
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    let notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      notification.parentNode.removeChild(notification);
+    });
+  });
+});

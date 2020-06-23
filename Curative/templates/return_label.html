@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+
+            <div class="columns is-mobile">
+
+                <div class="column is-half" style="margin-top: 50px;">
+                    <h1 class="title">Shipping Details</h1>
+
+                    <div class="content">
+                        <ul type="I">
+                            <li class="subtitle is-5">Shipping Label ID: <strong>{{ se_data.label_id }}</strong></li>
+                            <li class="subtitle is-5">Tracking #: <strong>{{ se_data.tracking_number }}</strong></li>
+                        </ul>
+                    </div>
+
+
+                    <h1 class="title">Need to schedule a pick up? <span class="title has-text-success is-italic">(Coming Soon!)</span></h1>
+                    <h2 class="subtitle"><strong>Notice:</strong> Once submitted, this pickup request cannot be
+                        cancelled.</h2>
+
+
+                    <fieldset disabled>
+                        <form action="/pickup" method="POST">
+                            <div class="field-body">
+                                <div class="field">
+                                    {{ form.label_id.label(class="label is-small") }}
+
+                                    {% if form.label_id.errors %}
+                                        {{ form.label_id(class="input control is-danger is-small") }}
+                                        {% for error in form.label_id.errors %}
+                                            <p class="help is-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.label_id(class="input control is-info is-small") }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="field">
+                                    {{ form.contact_name.label(class="label is-small") }}
+
+                                    {% if form.contact_name.errors %}
+                                        {{ form.contact_name(class="input control is-danger is-small") }}
+                                        {% for error in form.contact_name.errors %}
+                                            <p class="help is-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.contact_name(class="input control is-info is-small") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="field-body mt-5">
+                                <div class="field">
+                                    {{ form.contact_email.label(class="label is-small") }}
+
+                                    {% if form.contact_email.errors %}
+                                        {{ form.contact_email(class="input control is-danger is-small") }}
+                                        {% for error in form.contact_email.errors %}
+                                            <p class="help is-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.contact_email(class="input control is-info is-small") }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="field">
+                                    {{ form.contact_phone.label(class="label is-small") }}
+
+                                    {% if form.contact_phone.errors %}
+                                        {{ form.contact_phone(class="input control is-danger is-small") }}
+                                        {% for error in form.contact_phone.errors %}
+                                            <p class="help is-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.contact_phone(class="input control is-info is-small") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="field mt-5">
+                                <div class="control">
+                                    {{ form.pickup_notes.label(class="label is-small") }}
+
+                                    {{ form.pickup_notes(class="textarea is-info",
+                                        plaseholder="e.g. Please knock, doorbell is broken.") }}
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    {{ form.schedule_pickup(class="button is-warning is-medium") }}
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+
+                </div>
+
+                <div class="column is-half">
+                    <h1 class="title has-text-success has-text-centered is-2"
+                        style="margin-bottom: 15px; margin-top: 25px;">
+                        Print your return label below!
+                    </h1>
+
+                    <object data="{{ se_data.label_download.pdf }}"
+                            type="application/pdf"
+                            width="500"
+                            height="700"
+                            style="margin-left: 80px;">
+                    </object>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

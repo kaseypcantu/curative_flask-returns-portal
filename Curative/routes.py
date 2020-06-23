@@ -1,6 +1,5 @@
 import dataclasses
 import os
-import pprint as p
 
 from flask import flash, render_template, redirect, url_for, session, request
 
@@ -12,6 +11,7 @@ from Curative.models import (
     Package,
     PackageWeight,
     PackageDimensions,
+    PackageLabelMessages,
     PickupObj,
     PickupContactDetails,
     PickupWindow
@@ -97,9 +97,14 @@ def curative_returns():
                 height=12.5
         )
 
+        label_messages = PackageLabelMessages(
+                reference1=form.number_of_tests_to_return.data
+        )
+
         package = Package(
                 weight=dataclasses.asdict(weight),
-                dimensions=dataclasses.asdict(dims)
+                dimensions=dataclasses.asdict(dims),
+                label_messages=dataclasses.asdict(label_messages)
         )
 
         se = ShipEngine()
@@ -107,8 +112,7 @@ def curative_returns():
         se_data = se.create_label(
                 ship_to_address=curative_ship_to,
                 ship_from_address=user_ship_from,
-                packages=[package],
-                label_message=form.number_of_tests_to_return.data
+                packages=[package]
         )
         flash(f"Label Generated! - Print you return label below.", "primary")
         pickup_form = SchedulePickupForm()

@@ -12,10 +12,7 @@ from Curative.models import (
     Shipment,
     ShipFromAddress,
     ShipToAddress,
-    Package,
-    PackageWeight,
-    PackageDimensions,
-    AdvancedOptions
+    Package
 )
 
 load_dotenv()
@@ -59,10 +56,8 @@ class ShipEngine:
             self,
             ship_to_address: ShipToAddress,
             ship_from_address: ShipFromAddress,
-            packages: List[Package],
-            label_message: str
+            packages: List[Package]
     ):
-        advanced_options = AdvancedOptions(custom_field1=label_message)
 
         shipment = Shipment(
                 carrier_id=self.carrier_id,
@@ -74,7 +69,6 @@ class ShipEngine:
                 warehouse_id=None,
                 return_to=None,
                 confirmation='delivery',
-                advanced_options=dataclasses.asdict(advanced_options),
                 insurance_provider='none',
                 packages=[dataclasses.asdict(package) for package in packages]
         )

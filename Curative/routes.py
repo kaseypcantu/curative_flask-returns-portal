@@ -62,7 +62,7 @@ def curative_returns():
                     phone="1-789-456-1234",
                     company_name="Curative Inc.",
                     address_line1="430 South Cataract Ave",
-                    address_line2='',
+                    address_line2=None,
                     address_line3=None,
                     city_locality="San Dimas",
                     state_province="CA",

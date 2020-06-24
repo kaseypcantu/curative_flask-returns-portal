@@ -71,9 +71,9 @@ class ShippingAddressForm(FlaskForm):
     postal_code = StringField('Postal Code', validators=[InputRequired(),
                                                          DataRequired(),
                                                          Length(min=1, max=15)])
-    country_code = StringField("Country", validators=[InputRequired(),
-                                                      DataRequired(),
-                                                      Length(min=1, max=2)])
+    country_code = StringField("Country (2 character abbreviation)", validators=[InputRequired(),
+                                                                                 DataRequired(),
+                                                                                 Length(min=1, max=2)])
     address_residential_indicator = SelectField('Residential Address?',
                                                 choices=["unknown", "yes", "no"])
     number_of_tests_to_return = StringField('# of tests you are returning',

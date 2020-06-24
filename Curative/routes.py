@@ -98,7 +98,7 @@ def curative_returns():
         )
 
         label_messages = PackageLabelMessages(
-                reference1=form.number_of_tests_to_return.data
+                reference1="Returning " + form.number_of_tests_to_return.data + " tests."
         )
 
         package = Package(

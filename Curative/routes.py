@@ -1,5 +1,6 @@
 import dataclasses
 import os
+import pprint as p
 
 from flask import flash, render_template, redirect, url_for, session, request
 
@@ -98,10 +99,11 @@ def curative_returns():
         )
 
         label_messages = PackageLabelMessages(
-                reference1="Returning " + form.number_of_tests_to_return.data + " tests."
+                reference1="Returning " + form.number_of_tests_to_return.data + " tests"
         )
 
         package = Package(
+                package_code="package",
                 weight=dataclasses.asdict(weight),
                 dimensions=dataclasses.asdict(dims),
                 label_messages=dataclasses.asdict(label_messages)

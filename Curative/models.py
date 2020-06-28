@@ -99,6 +99,7 @@ class PackageLabelMessages:
 
 @dataclass
 class Package:
+    package_code: str
     weight: PackageWeight
     dimensions: Optional[PackageDimensions]
     label_messages: PackageLabelMessages

@@ -66,8 +66,8 @@ class ShippingAddressForm(FlaskForm):
                                                     DataRequired(),
                                                     Length(min=2, max=50)])
     state_province = StringField('State (2 character abbreviation)', validators=[InputRequired(),
-                                                      DataRequired(),
-                                                      Length(min=1, max=2)])
+                                                                                 DataRequired(),
+                                                                                 Length(min=1, max=2)])
     postal_code = StringField('Postal Code', validators=[InputRequired(),
                                                          DataRequired(),
                                                          Length(min=1, max=15)])
